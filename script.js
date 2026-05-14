@@ -1,15 +1,15 @@
 let step = 0;
 
 function sendAnswer(text) {
+  const formData = new FormData();
+  formData.append("answer", text);
+
   fetch("save.php", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "answer=" + encodeURIComponent(text)
+    body: formData
   })
   .then(res => res.text())
-  .then(data => console.log(data));
+  .then(data => console.log("Server:", data));
 }
 
 function send() {
